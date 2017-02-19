@@ -12,14 +12,14 @@ $(document).ready(function() {
     var total = 0;
     var Questions = [
         ["What continent do Kangaroo's live on?", "Africa", "Asia", "North America", "Australia", "Australia"],
-        ["What kingdom of animals to Frogs belong to?", "Amphibians", "Mammals", "Dinosaurs", "Birds", "Amphibians"],
-        ["What is the sharks skeleton made out of?", "Bone", "Wood", "Cartilage", "Nutella", "Cartilage"],
-        ["Where do birds fly for the Winter?", "GreenLand", "Iceland", "Maine", "South", "South"],
-        ["What color is a Giraffes tongue?", "Red", "Orange", "zebra colored", "black", "black"],
-        ["What is the skeleton of a beetle called?", "exoskeleton", "bone", "hardskin", "gash", "exoskeleton"],
-        ["What color is a Polar Bear?", "White", "Black", "Grey", "Red", "Black"],
-        ["What color is a cardinal?", "Blue", "Red", "Yellow", "Pink", "Red"]
-
+        ["What kingdom of animals do Frogs belong to?", "Amphibians", "Mammals", "Dinosaurs", "Birds", "Amphibians"],
+        ["What is a Shark's skeleton made out of?", "Bone", "Wood", "Cartilage", "Nutella", "Cartilage"],
+        ["Where do Birds fly for the Winter?", "GreenLand", "Iceland", "Maine", "South", "South"],
+        ["What color is a Giraffes tongue?", "Red", "Orange", "Zebra Colored", "Black", "Black"],
+        ["What is the skeleton of a Beetle called?", "Exoskeleton", "Bone", "Hardskin", "Gash", "Exoskeleton"],
+        ["What color is a Polar Bear's skin?", "White", "Black", "Grey", "Red", "Black"],
+        ["What color is a Cardinal?", "Blue", "Red", "Yellow", "Pink", "Red"],
+        ["What can't Elephant's do?", "Jump", "Laugh", "Play", "Cry", "Jump"]
     ];
 
 
@@ -31,7 +31,7 @@ $(document).ready(function() {
         total++;
         console.log(total + "total in correct");
         console.log(typeof total + total);
-        $("#wins").html(correct + " Correct");
+        $("#wins").html(correct + " Right");
         queAns++;
         waitRight();
     }
@@ -45,6 +45,9 @@ $(document).ready(function() {
         console.log(typeof total + total);
         $("#losses").html(wrong + " Wrong");
         waitWrong();
+            if(total === Questions.length){
+                restart();
+            }// this is what I just added
 
     }
 
@@ -54,8 +57,8 @@ $(document).ready(function() {
         setTimeout(makeQuestion, 2000);
         setTimeout(theAnswers, 2000);
         count = 5;
-        $("#timer").html(counter);
-        $("#question").html(" YOU ARE CORRECT");
+        $("#timer").html(counter + " Seconds Left");
+        $("#question").html("<h2>" + "YOU ARE CORRECT" + "</h2>");
         if (total === Questions.length) {
             restart();
         }
@@ -64,21 +67,22 @@ $(document).ready(function() {
 
     function waitWrong() {
 
-
+         $("#question").html("<h2>" + " WRONG!" + " Correct answer: " +  (Questions[queAns-1][5]) + "</h2>");    
         setTimeout(makeQuestion, 2000);
         setTimeout(theAnswers, 2000);
         count = 5;
-        $("#timer").html(counter);
-        $("#question").html(" WRONG");
+        $("#timer").html(" TIMES UP!");
+       
         if (total === Questions.length) {
             restart();
+
         }
 
     }
 
     function restart() {
 
-        $("#wins").html("0 Correct");
+        $("#wins").html("0 Right");
         $("#losses").html("0 Wrong");
         $("#question").html("Want to Try Again? Click Here!");
         $(".answer").html("");
@@ -121,7 +125,6 @@ $(document).ready(function() {
         $("#question").on("click", function() {
             var Value = $(this).attr("data-value")
             if (25 == $(this).attr("data-Value")) {
-                // setTimeout(game, 5000)
                 restart();
                 $("#question").off("click");
 
@@ -132,27 +135,25 @@ $(document).ready(function() {
     }
 
     function makeQuestion() {
-        $("#question").html(Questions[queAns][0]);
+        $("#question").html("<h2>"+Questions[queAns][0] +"</h2>");
         console.log(queAns);
-        clicking();
+        clicking();     
+        counter = 5;
 
 
 
-             // var timeClock = setInterval(function() {
-             //  counter--;
-             //  console.log(counter);
-             //  $("#timer").html(counter + " Seconds Left");
-              // if (counter === 0) {
-              //   $("#timer").html("NOT QUICK ENOUGH")
-              //     clearInterval(timeClock);   
-              //     wrong++;
-              //     total++;
-              //     $("#losses").html(wrong + " Wrong");
-              //     wrongAnswer();
-
+          //    var timeClock = setInterval(function() {
+          //     counter--;
+          //     console.log(counter);
+          //     $("#timer").html(counter + " Seconds Left");
+          //     if (counter <= 0) {
+          //       $("#question").html("<h2>" + "NOT QUICK ENOUGH" + "</h2>")
+          //         clearInterval(timeClock);   
+          //         total++;
+          //         $("#losses").html(wrong + " Wrong");
+          //        setTimeout(wrongAnswer, 1000);   
           //     }
-          // },
-          // 1000);
+          // },1000);
 
 
 
@@ -162,9 +163,6 @@ $(document).ready(function() {
 
 
     //guess is the choice from a thru d
-    //  i    is the inital spot which array are we looking at 0 is the first one
-    // d is the choice # connecting to the boxes in html  needs to start at 0
-
 
     function theAnswers() {
         for (var guess = 1; guess <= 5; guess++) {
@@ -212,10 +210,9 @@ $(document).ready(function() {
   
 
     // TO DO LIST
-    // fix time counter
-    // make end game function
-    // figure out how to get a new screen to popup in between questions
-
+    // fix time counter - done
+    // make end game function - 
+    
 
 
 });

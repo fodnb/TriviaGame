@@ -20,7 +20,10 @@ body {
 	color: yellow;
 }
 
-.answer:hover,
+#choices:hover{
+	background-color: black;
+	color: red;
+}
 
 
 #background{
@@ -43,13 +46,18 @@ h2{
 #question{
 	opacity: .50;
 		font-weight: 700;
+		font-size: 100px;
+		color: darkblue;
 
 }	
+
 
 #choices {
 	text-align: center;
 	opacity: .50;
-		font-weight: 700;
+	font-weight: 700;
+	color: black;
+
 
 
 }
@@ -63,4 +71,13 @@ h2{
 .jumbotron{
 
 
+}
+
+
+#wins {
+	color: blue;
+	}
+
+#losses {
+	color: red;
 }
