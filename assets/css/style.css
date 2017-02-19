@@ -1,83 +1,69 @@
-*{
-	max-height: 650px;
+* {
+    max-height: 650px;
 }
 
 body {
-	max-width: 960px;
-	width: 100%;
-
-	box-sizing: border-box;
-	margin: 0 auto;
-
-
+    max-width: 960px;
+    width: 100%;
+    box-sizing: border-box;
+    margin: 0 auto;
 }
 
-#playButton{
-	height: 40px;
-	width: 60px;
-	background: green;
-	font-weight: 700;
-	color: yellow;
+#playButton {
+    height: 40px;
+    width: 60px;
+    background: green;
+    font-weight: 700;
+    color: yellow;
 }
 
-#choices:hover{
-	background-color: black;
-	color: red;
+#choices:hover {
+    background-color: black;
+    color: red;
 }
 
-
-#background{
-		max-width: 960px;
-		background: url(../images/animals.gif);
-		width: 100%;
-
+#background {
+    max-width: 960px;
+    background: url("../images/animals.gif");
+    width: 100%;
 }
 
 .title {
-	opacity: .00;
-	font-weight: 700;
-	font-size: 40px;
+    opacity: .00;
+    font-weight: 700;
+    font-size: 40px;
 }
 
-h2{
-	font-size: 40px;
+h2 {
+    font-size: 40px;
 }
 
-#question{
-	opacity: .50;
-		font-weight: 700;
-		font-size: 100px;
-		color: darkblue;
-
-}	
-
+#question {
+    opacity: .50;
+    font-weight: 700;
+    font-size: 100px;
+    color: darkblue;
+}
 
 #choices {
-	text-align: center;
-	opacity: .50;
-	font-weight: 700;
-	color: black;
-
-
-
+    text-align: center;
+    opacity: .50;
+    font-weight: 700;
+    color: black;
 }
 
 #timer {
-	opacity: .50;
-	font-size: 22px;
-	font-weight: 700;
+    opacity: .50;
+    font-size: 22px;
+    font-weight: 700;
 }
 
-.jumbotron{
-
-
-}
-
+.jumbotron {}
 
 #wins {
-	color: blue;
-	}
+    color: blue;
+}
 
 #losses {
-	color: red;
+    color: red;
 }
