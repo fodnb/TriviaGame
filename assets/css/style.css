@@ -7,7 +7,7 @@ body {
     width: 100%;
     box-sizing: border-box;
     margin: 0 auto;
-      background: url(../images/animals.gif);
+      background: url("../images/animals.gif");
 }
 
 #playButton {
