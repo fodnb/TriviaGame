@@ -7,7 +7,7 @@ body {
     width: 100%;
     box-sizing: border-box;
     margin: 0 auto;
-      background: url("../images/Animals.gif");
+      background: url("../images/animals.gif");
 }
 
 #playButton {
@@ -63,8 +63,14 @@ h2 {
 
 #wins {
     color: blue;
+   
 }
 
 #losses {
     color: red;
+   
+}
+
+.newBut {
+	opacity: 1;
 }

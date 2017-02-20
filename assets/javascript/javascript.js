@@ -8,7 +8,7 @@ $(document).ready(function() {
     var correct = 0; // count for how many correct responses received       
     var wrong = 0; // count for how many wrong responses received
     var counter = 5;
-    var count = 0;
+  
     var total = 0;
     var Questions = [
         ["What continent do Kangaroo's live on?", "Africa", "Asia", "North America", "Australia", "Australia"],
@@ -45,51 +45,54 @@ $(document).ready(function() {
         console.log(typeof total + total);
         $("#losses").html(wrong + " Wrong");
         waitWrong();
-            if(total === Questions.length){
-                restart();
-            }// this is what I just added
+        // if (total === Questions.length) {
+        //     restart();
+        // } // this is what I just added
 
     }
 
     /// inbetween guesses screen - I still need to fix this
     function waitRight() {
-
-        setTimeout(makeQuestion, 2000);
-        setTimeout(theAnswers, 2000);
-        count = 5;
+  
+        setTimeout(makeQuestion, 500);
+        setTimeout(theAnswers, 500);
+        clearInterval(timeClock); 
+        counter = 5;
         $("#timer").html(counter + " Seconds Left");
         $("#question").html("<h2>" + "YOU ARE CORRECT" + "</h2>");
         if (total === Questions.length) {
-            restart();
+            startScreen();
+            // restart();
         }
-
     }
 
     function waitWrong() {
-
-         $("#question").html("<h2>" + " WRONG!" + " Correct answer: " +  (Questions[queAns-1][5]) + "</h2>");    
-        setTimeout(makeQuestion, 2000);
-        setTimeout(theAnswers, 2000);
-        count = 5;
+      
+        $("#question").html("<h2>" + " WRONG!" + " Correct answer: " + (Questions[queAns - 1][5]) + "</h2>");
+        setTimeout(makeQuestion, 500);
+        setTimeout(theAnswers, 500);
+        clearInterval(timeClock); 
+        counter =5;
         $("#timer").html(" TIMES UP!");
-       
         if (total === Questions.length) {
-            restart();
-
+            startScreen();
+            // restart();
         }
-
     }
 
     function restart() {
 
         $("#wins").html("0 Right");
         $("#losses").html("0 Wrong");
-        $("#question").html("Want to Try Again? Click Here!");
         $(".answer").html("");
         queAns = 0;
         wrong = 0;
         correct = 0;
         total = 0;
+      
+      
+    
+
 
     }
 
@@ -97,63 +100,67 @@ $(document).ready(function() {
     console.log(Questions.length)
 
     function clicking() {
-
+   
         $(".answer").on("click", function() {
             var Value = ($(this).attr("data-value"));
-            clearInterval(timeClock);// added this to try and stop clock when clicking
+            // added this to try and stop clock when clicking
             if (total < Questions.length) {
                 $(".answer").off("click")
 
                 if (Value === (Questions[queAns][5])) {
                     correctAnswer();
-                } else if (Value != (Questions[queAns][5])) {
+                } else if (Value != (Questions[queAns][5])){
+                   
                     wrongAnswer();
-                }
+                } 
+
             } else if (total >= Questions.length) {
                 $(".answer").off("click");
             }
+            
+
+
+
         });
+
+
+
+
+
+
+
+
+        //    var timeClock = setInterval(function() {
+        //   // counter--;
+        //     console.log(counter);
+        //     $("#timer").html(counter + " Seconds Left");
+        //     // if (counter === 0) {
+        //     //   $("#question").html("<h2>" + "NOT QUICK ENOUGH" + "</h2>")
+        //     //     clearInterval(timeClock);   
+        //     //     total++;
+        //     //     $("#losses").html(wrong + " Wrong");
+
+        //     //    setTimeout(wrongAnswer, 1000);   
+
+        //     // } 
+        
+        // },1000);
 
 
     }
 
 
 
-
-
-    function reclicking() {
-        $("#question").on("click", function() {
-            var Value = $(this).attr("data-value")
-            if (25 == $(this).attr("data-Value")) {
-                restart();
-                $("#question").off("click");
-
-            }
-
-        });
-
-    }
 
     function makeQuestion() {
-        $("#question").html("<h2>"+Questions[queAns][0] +"</h2>");
+        $("#question").html("<h2>" + Questions[queAns][0] + "</h2>");
         console.log(queAns);
-        clicking();     
-        counter = 5;
+        clicking();
+       
+  
 
-
-
-          //    var timeClock = setInterval(function() {
-          //     counter--;
-          //     console.log(counter);
-          //     $("#timer").html(counter + " Seconds Left");
-          //     if (counter <= 0) {
-          //       $("#question").html("<h2>" + "NOT QUICK ENOUGH" + "</h2>")
-          //         clearInterval(timeClock);   
-          //         total++;
-          //         $("#losses").html(wrong + " Wrong");
-          //        setTimeout(wrongAnswer, 1000);   
-          //     }
-          // },1000);
+        /// this is will run through the game with no user input but once I put click on answer it screws up the timing and game... still need to work on this
+        
 
 
 
@@ -165,6 +172,7 @@ $(document).ready(function() {
     //guess is the choice from a thru d
 
     function theAnswers() {
+
         for (var guess = 1; guess <= 5; guess++) {
             $("#choice" + [0]).text(Questions[queAns][1]);
             $("#choice" + [0]).attr("data-Value", Questions[queAns][1]);
@@ -176,20 +184,34 @@ $(document).ready(function() {
             $("#choice" + [3]).attr("data-Value", Questions[queAns][4]);
             var answer = Questions[queAns][5];
             $("#question").attr("data-Value", "25")
+
+
         }
     }
 
     //*************************THIS IS OUR GAME************************************************
 
-   
 
 
+function startScreen(){
+        $("#question").empty();
+        $(".answer").empty();
+            var newBut = $("<button>");
+            newBut.attr("class", "btn-primary");
+        newBut.html("PRESS TO PLAY");
+        $("#question").append(newBut);
+      $("#timer").empty();
+      $("#question").on("click", function(){
+        setTimeout(game, 1000);
+         restart();
+        $("#question").off("click");
+      });
+     
+}
 
 
 
     function game() {
-
-      
         makeQuestion();
         theAnswers();
         console.log(typeof queAns + queAns);
@@ -197,22 +219,14 @@ $(document).ready(function() {
 
     }
 
+   
 
-  
-
-
-
-    setTimeout(game, 1000);
-
-
-
-
-  
+startScreen();
 
     // TO DO LIST
     // fix time counter - done
     // make end game function - 
-    
+
 
 
 });
@@ -250,3 +264,19 @@ $(document).ready(function() {
 
 //     // wait();
 // }
+
+
+
+
+    // function reclicking() {
+    //     $("#question").on("click", function() {
+    //         var Value = $(this).attr("data-value")
+    //         if (25 == $(this).attr("data-Value")) {
+    //             restart();
+    //             $("#question").off("click");
+
+    //         }
+
+    //     });
+
+    // }
