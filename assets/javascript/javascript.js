@@ -169,7 +169,7 @@ $(document).ready(function() {
         $("#question").empty();
         $(".answer").empty();
         var newBut = $("<button>");
-        newBut.attr("class", "btn-primary");
+        newBut.attr("class", "btn-primary");    
         newBut.html("PRESS TO PLAY");
         $("#question").append(newBut);
         $("#timer").html("YOUR SCORE WAS " + yourScore + "%")
