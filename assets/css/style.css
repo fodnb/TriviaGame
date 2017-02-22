@@ -1,5 +1,6 @@
 * {
     max-height: 650px;
+    margin: 0 auto;
 }
 
 body {
@@ -10,8 +11,10 @@ body {
       background: url("../images/animals.gif");
 }
 
+
+
 #playButton {
-    height: 40px;
+    /*height: 40px;*/
     width: 60px;
     background: green;
     font-weight: 700;
@@ -42,7 +45,7 @@ h2 {
 #question {
     opacity: .50;
     font-weight: 700;
-    font-size: 100px;
+    font-size: 40px;
     color: darkblue;
 }
 
@@ -51,6 +54,8 @@ h2 {
     opacity: .50;
     font-weight: 700;
     color: black;
+    height: 95%;
+	border: 1px solid #eee;
 }
 
 #timer {
@@ -63,14 +68,26 @@ h2 {
 
 #wins {
     color: blue;
+    height: 20px;
    
 }
 
 #losses {
     color: red;
+
    
 }
 
 .newBut {
 	opacity: 1;
+}
+
+#foot{
+	position: static;
+	bottom: 0;
+	  opacity: .50;
+    font-size: 14px;
+    font-weight: 700;
+    color: blue;
+}
 }
