@@ -8,9 +8,10 @@ body {
     width: 100%;
     box-sizing: border-box;
     margin: 0 auto;
-      background: url("../newimage/animals.gif");
+    background: url("../newimage/animals.gif");
     background-position:50% 50%;
     background-size: cover;
+    background-repeat: no-repeat;
 }
 
 
