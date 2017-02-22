@@ -19,7 +19,11 @@ $(document).ready(function() {
         ["What is the skeleton of a Beetle called?", "Exoskeleton", "Bone", "Hardskin", "Gash", "Exoskeleton"],
         ["What color is a Polar Bear's skin?", "White", "Black", "Grey", "Red", "Black"],
         ["What color is a Cardinal?", "Blue", "Red", "Yellow", "Pink", "Red"],
-        ["What can't Elephant's do?", "Jump", "Laugh", "Play", "Cry", "Jump"]
+        ["What can't Elephant's do?", "Jump", "Laugh", "Play", "Cry", "Jump"],
+        ["What is the only dog without a pink tongue?", "Caucasian", "Weimaraner", "Chow", "BullDog", "Chow"],
+        ["What is the only mammal that can fly", "Squirrel", "Sloth", "Bat", "Lemur", "Bat"],
+        ["A group of Owls is called a?", "Consortium", "Swag", "Parliament", "Chamber", "Parliament"],
+        ["What is the first animal domesticated by humans?", "Elephants", "Carrier Pigeon", "Dogs", "Goat", "Goat"]
     ];
 
 
@@ -34,6 +38,7 @@ $(document).ready(function() {
         $("#wins").html(correct + " Right");
         queAns++;
         waitRight();
+        // $("#ausy").show();
     }
 
     //// what we do when we have an incorrect answer
@@ -49,6 +54,7 @@ $(document).ready(function() {
 
     /// inbetween guesses screen - I still need to fix this
     function waitRight() {
+        // $("#ausy").hide();
         setTimeout(makeQuestion, 2000);
         setTimeout(theAnswers, 2000);
         $("#question").html("<h2>" + "YOU ARE CORRECT" + "</h2>");
@@ -165,6 +171,7 @@ $(document).ready(function() {
 
     function startScreen() {
         var yourScore = Math.round((100/(Questions.length))*correct);
+        // $("#ausy").hide();
 
         $("#question").empty();
         $(".answer").empty();
