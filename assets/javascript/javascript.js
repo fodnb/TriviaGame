@@ -1,14 +1,9 @@
 $(document).ready(function() {
 
-
-    // var timeClock;
-    var play = false;
     var queAns = 0;
     var answer; // for the correct response to the answer from a through d
     var correct = 0; // count for how many correct responses received       
     var wrong = 0; // count for how many wrong responses received
-    // var counter = 5;
-
     var total = 0;
     var Questions = [
         ["What continent do Kangaroo's live on?", "Africa", "Asia", "North America", "Australia", "Australia"],
@@ -38,7 +33,6 @@ $(document).ready(function() {
         $("#wins").html(correct + " Right");
         queAns++;
         waitRight();
-        // $("#ausy").show();
     }
 
     //// what we do when we have an incorrect answer
@@ -52,9 +46,8 @@ $(document).ready(function() {
         waitWrong();
     }
 
-    /// inbetween guesses screen - I still need to fix this
+    /// inbetween guesses screen - I still need to add a popup window
     function waitRight() {
-        // $("#ausy").hide();
         setTimeout(makeQuestion, 2000);
         setTimeout(theAnswers, 2000);
         $("#question").html("<h2>" + "YOU ARE CORRECT" + "</h2>");
@@ -84,7 +77,6 @@ $(document).ready(function() {
 
 
     function clicking() {
-
         var counter = 5;
         var timeClock = setInterval(function() {
             counter--;
@@ -96,11 +88,8 @@ $(document).ready(function() {
                 clearInterval(timeClock);
                 // total++;
                 $("#losses").html(wrong + " Wrong");
-
                 wrongAnswer();
-
             }
-
         }, 1000);
 
 
@@ -109,11 +98,8 @@ $(document).ready(function() {
 
         $(".answer").on("click", function() {
             var Value = ($(this).attr("data-value"));
-
-
             if (total < Questions.length) {
                 $(".answer").off("click")
-
                 if (Value === (Questions[queAns][5])) {
                     clearInterval(timeClock);
                     correctAnswer();
@@ -121,22 +107,13 @@ $(document).ready(function() {
                     clearInterval(timeClock);
                     wrongAnswer();
                 }
-
             } else if (total >= Questions.length) {
                 $(".answer").off("click");
             }
         });
-
-
-
     }
 
-
-
-
-
-
-
+    // This is where the game moves the current quetion onto the page
     function makeQuestion() {
         $("#question").html("<h2>" + Questions[queAns][0] + "</h2>");
         console.log(queAns);
@@ -145,7 +122,7 @@ $(document).ready(function() {
     }
 
 
-    //guess is the choice from a thru d
+    //This is where we move the current questions answer selection onto the page and document the answer
 
     function theAnswers() {
 
@@ -158,25 +135,22 @@ $(document).ready(function() {
             $("#choice" + [2]).attr("data-Value", Questions[queAns][3]);
             $("#choice" + [3]).text(Questions[queAns][4]);
             $("#choice" + [3]).attr("data-Value", Questions[queAns][4]);
-            var answer = Questions[queAns][5];
-            $("#question").attr("data-Value", "25")
-
-
         }
     }
 
-    //*************************THIS IS OUR GAME************************************************
 
 
+
+//  This is where I setup the openingscreen for the beginning of the game and after the game is over
+//  We setup a button that pulls us into the game and clear all the html from the page
+//  I have the game reset all the information after the button starts a new game so we can still show our values from the previous attempt
 
     function startScreen() {
-        var yourScore = Math.round((100/(Questions.length))*correct);
-        // $("#ausy").hide();
-
+        var yourScore = Math.round((100 / (Questions.length)) * correct);
         $("#question").empty();
         $(".answer").empty();
         var newBut = $("<button>");
-        newBut.attr("class", "btn-primary");    
+        newBut.attr("class", "btn-primary");
         newBut.html("PRESS TO PLAY");
         $("#question").append(newBut);
         $("#timer").html("YOUR SCORE WAS " + yourScore + "%")
@@ -185,77 +159,23 @@ $(document).ready(function() {
             restart();
             $("#question").off("click");
         });
-
     }
 
 
-
+// This is where the game pulls the questions and answers into the game
     function game() {
         makeQuestion();
         theAnswers();
         console.log(typeof queAns + queAns);
         console.log(typeof total + total);
-
     }
 
 
-
+// by calling this function we set in motion the game to pull upon all the other functions when needed
     startScreen();
 
-    // TO DO LIST
-    // fix time counter - done
-    // make end game function - 
+
 
 
 
 });
-
-
-
-
-
-
-
-// 
-// **********************************UNUSED CODE**************************************************************************
-// 
-
-
-
-
-// function tenSeconds() {
-
-//     if (counter === 0) {
-//         clearInterval(timeLeft)
-//         wrong++;
-//         count++;
-//         $("#losses").html(wrong + " Wrong")
-//             // wait();
-//         console.log(wrong + " Wrong");
-//     }
-//     if (counter > 0) {
-//         counter--;
-
-//     }
-
-//     $("#timer").html(counter);
-//     $("#losses").html(wrong + " Wrong")
-
-//     // wait();
-// }
-
-
-
-
-// function reclicking() {
-//     $("#question").on("click", function() {
-//         var Value = $(this).attr("data-value")
-//         if (25 == $(this).attr("data-Value")) {
-//             restart();
-//             $("#question").off("click");
-
-//         }
-
-//     });
-
-// }
